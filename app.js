@@ -10,22 +10,33 @@ function getDailySeed() {
   return `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 }
 
+function getTodayFocusMessage() {
+  const day = new Date().getDate();
+  if (day % 3 === 0) {
+    return "🧠 Today’s Brain Focus: Mental Math & Reasoning — Helping you stay quick with everyday calculations and logic.";
+  } else if (day % 2 === 0) {
+    return "🧠 Today’s Brain Focus: Working Memory — Strengthening your ability to retain and recall information quickly.";
+  } else {
+    return "🧠 Today’s Brain Focus: Visual Attention — Training your ability to scan and spot subtle differences.";
+  }
+}
+
 function startGame() {
   console.log("🚀 startGame() triggered");
   document.getElementById("game-instruction").style.display = "block";
   gameArea.innerHTML = "";
   result.textContent = "";
   startBtn.style.display = "none";
-  const day = new Date().getDate();
 
+  const focusMessage = getTodayFocusMessage();
+  companionText.textContent = focusMessage;
+
+  const day = new Date().getDate();
   if (day % 3 === 0) {
-    companionText.textContent = "🧠 Today’s Brain Focus: Mental Math & Reasoning — Helping you stay quick with everyday calculations and logic.";
     quickMathGame();
   } else if (day % 2 === 0) {
-    companionText.textContent = "🧠 Today’s Brain Focus: Working Memory — Strengthening your ability to retain and recall information quickly.";
     memoryNumberGame();
   } else {
-    companionText.textContent = "🧠 Today’s Brain Focus: Visual Attention — Training your ability to scan and spot subtle differences.";
     patternMatchGame();
   }
 }
@@ -148,10 +159,13 @@ function checkAnswer(correctNumber) {
   }
 }
 
-startBtn.addEventListener("click", () => {
-  document.getElementById("game-instruction").style.display = "none";
-  startGame();
-});
+window.onload = () => {
+  document.getElementById("today-date").textContent = new Date().toDateString();
+  document.getElementById("companion-text").textContent = getTodayFocusMessage();
 
-document.getElementById("today-date").textContent = new Date().toDateString();
+  startBtn.addEventListener("click", () => {
+    document.getElementById("game-instruction").style.display = "none";
+    startGame();
+  });
+};
 
