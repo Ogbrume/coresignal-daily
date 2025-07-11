@@ -8,13 +8,22 @@
 </head>
 <body>
   <div class="app-container">
-    <h1>🧠 CoreSignal Daily</h1>
-    <p id="daily-message">Loading today’s challenge...</p>
-    <p id="companion-text" style="font-style: italic; margin-bottom: 1rem; color: #444;"></p>
-    <div id="game-area"></div>
-    <button id="start-btn">Start Today’s Game</button>
-    <p id="result"></p>
+  <h1>🧠 CoreSignal Daily</h1>
+
+  <p class="subtext">Welcome! This is your challenge for <strong id="today-date"></strong>.</p>
+
+  <div class="focus-card">
+    <p id="companion-text">🧠 Today’s Brain Focus goes here...</p>
   </div>
+
+  <p id="game-instruction" class="instruction-text">Let’s begin today’s challenge:</p>
+
+  <div id="game-area"></div>
+
+  <p id="result" class="result-text"></p>
+
+  <button id="start-btn">Start Today’s Game</button>
+</div>
   <script src="app.js"></script>
 </body>
 </html>
