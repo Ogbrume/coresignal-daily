@@ -90,6 +90,7 @@ document.querySelectorAll("#grid button").forEach(b => {
 btn.style.backgroundColor = "#b2fab4";
 btn.style.border = "2px solid #4caf50";
 btn.style.fontWeight = "bold";
+btn.style.boxShadow = "0 0 10px #4caf50";
 
   const elapsed = (Date.now() - startTime) / 1000;
   const rounded = elapsed.toFixed(2);
