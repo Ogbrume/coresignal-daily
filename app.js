@@ -118,10 +118,12 @@ btn.style.boxShadow = "0 0 10px #4caf50";
 
   result.textContent = message;
 const narration = getCompanionNarration("pattern", true);
-result.textContent += `\n\n${narration}`;
+result.textContent = message;
+document.getElementById("narration").textContent = narration;
 trackBestTime(rounded); else {result.textContent = "❌ Nope! That wasn’t it.";
 const narration = getCompanionNarration("pattern", false);
-result.textContent += `\n\n${narration}`;
+result.textContent = message;
+document.getElementById("narration").textContent = narration;
   }
 };
 
