@@ -58,25 +58,37 @@ function patternMatchGame() {
     btn.textContent = (i === differentIndex) ? wrongIcon : chosenIcon;
     btn.style.fontSize = "2rem";
     btn.onclick = () => {
-      const elapsed = (Date.now() - startTime) / 1000;
-      const rounded = elapsed.toFixed(2);
+  // Haptic on mobile
+  if (navigator.vibrate) {
+    navigator.vibrate(50);
+  }
 
-      if (i === differentIndex) {
-        let message;
-        if (elapsed < 2) {
-          message = `⚡ Incredible! ${rounded}s`;
-        } else if (elapsed < 5) {
-          message = `✅ Good job! ${rounded}s`;
-        } else {
-          message = `🙂 You got it in ${rounded}s — try faster tomorrow!`;
-        }
+  // Visual feedback on desktop
+  btn.style.transition = "background 0.1s";
+  btn.style.backgroundColor = "#b2fab4";
+  setTimeout(() => {
+    btn.style.backgroundColor = "#f0f0f0";
+  }, 100);
 
-        result.textContent = message;
-        trackBestTime(rounded);
-      } else {
-        result.textContent = "❌ Nope! That wasn’t it.";
-      }
-    };
+  const elapsed = (Date.now() - startTime) / 1000;
+  const rounded = elapsed.toFixed(2);
+
+  if (i === differentIndex) {
+    let message;
+    if (elapsed < 2) {
+      message = `⚡ Incredible! ${rounded}s`;
+    } else if (elapsed < 5) {
+      message = `✅ Good job! ${rounded}s`;
+    } else {
+      message = `🙂 You got it in ${rounded}s — try faster tomorrow!`;
+    }
+
+    result.textContent = message;
+    trackBestTime(rounded);
+  } else {
+    result.textContent = "❌ Nope! That wasn’t it.";
+  }
+};
     grid.appendChild(btn);
   }
 }
