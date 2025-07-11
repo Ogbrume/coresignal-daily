@@ -4,6 +4,21 @@ const result = document.getElementById("result");
 const companionText = document.getElementById("companion-text");
 console.log("📌 companionText element:", companionText);
 
+const tips = [
+  "🧘 Breathe deeply for 10 seconds before you begin — it primes your brain.",
+  "📵 Remove distractions for 60 seconds — this is your focus moment.",
+  "💡 Daily repetition strengthens your working memory — you’re doing it.",
+  "🚶 A short walk before mental tasks improves performance. Try it tomorrow!",
+  "📈 Aim to beat your own time, not perfection — small gains matter.",
+  "🛌 Sleep fuels focus — did you rest well last night?",
+  "🔁 Come back daily — mental sharpness compounds over time.",
+  "🧩 Missed today? That’s okay. What matters is coming back tomorrow.",
+];
+function getDailyTip() {
+  const seed = new Date().getDate();
+  return tips[seed % tips.length];
+}
+
 // Generate a consistent puzzle based on today’s date
 function getDailySeed() {
   const today = new Date();
@@ -20,6 +35,8 @@ function getTodayFocusMessage() {
     return "🧠 Today’s Brain Focus: Visual Attention — Training your ability to scan and spot subtle differences.";
   }
 }
+
+
 
 function startGame() {
   console.log("🚀 startGame() triggered");
@@ -167,6 +184,7 @@ function checkAnswer(correctNumber) {
 window.onload = () => {
   document.getElementById("today-date").textContent = new Date().toDateString();
   document.getElementById("companion-text").textContent = getTodayFocusMessage();
+  document.getElementById("daily-tip").textContent = getDailyTip();
 
   startBtn.classList.add("pulse");
 
