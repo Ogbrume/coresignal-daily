@@ -2,6 +2,7 @@ const startBtn = document.getElementById("start-btn");
 const gameArea = document.getElementById("game-area");
 const result = document.getElementById("result");
 const message = document.getElementById("daily-message");
+const companionText = document.getElementById("companion-text");
 
 // Generate a consistent puzzle based on today’s date
 function getDailySeed() {
@@ -12,14 +13,17 @@ function getDailySeed() {
 function startGame() {
   gameArea.innerHTML = "";
   result.textContent = "";
-  startBtn.style.display = "none"; // Hide the button when the game starts
-
+  startBtn.style.display = "none";
   const day = new Date().getDate();
+
   if (day % 3 === 0) {
+    companionText.textContent = "🧠 Today’s Brain Focus: Mental Math & Reasoning — Helping you stay quick with everyday calculations and logic.";
     quickMathGame();
   } else if (day % 2 === 0) {
+    companionText.textContent = "🧠 Today’s Brain Focus: Working Memory — Strengthening your ability to retain and recall information quickly.";
     memoryNumberGame();
   } else {
+    companionText.textContent = "🧠 Today’s Brain Focus: Visual Attention — Training your ability to scan and spot subtle differences.";
     patternMatchGame();
   }
 }
