@@ -2,6 +2,7 @@ const startBtn = document.getElementById("start-btn");
 const gameArea = document.getElementById("game-area");
 const result = document.getElementById("result");
 const companionText = document.getElementById("companion-text");
+console.log("📌 companionText element:", companionText);
 
 // Generate a consistent puzzle based on today’s date
 function getDailySeed() {
