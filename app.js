@@ -95,21 +95,19 @@ function patternMatchGame() {
     const btn = document.createElement("button");
     btn.textContent = (i === differentIndex) ? wrongIcon : chosenIcon;
     btn.style.fontSize = "2rem";
-    btn.onclick = () => {
-  // Haptic feedback for mobile
-  if (navigator.vibrate) {
-    navigator.vibrate(50);
-  }
+    btn.addEventListener("click", () => {
+  // Haptic on mobile
+  if (navigator.vibrate) navigator.vibrate(50);
 
-  // Clear previous selections
+  // Remove highlights from previous clicks
   document.querySelectorAll("#grid button").forEach(b => {
     b.style.backgroundColor = "#f0f0f0";
     b.style.border = "none";
     b.style.fontWeight = "normal";
-    b.style.boxShadow = "";
+    b.style.boxShadow = "none";
   });
 
-  // Highlight the clicked button
+  // Highlight the clicked one
   btn.style.backgroundColor = "#b2fab4";
   btn.style.border = "2px solid #4caf50";
   btn.style.fontWeight = "bold";
@@ -117,9 +115,9 @@ function patternMatchGame() {
 
   const elapsed = (Date.now() - startTime) / 1000;
   const rounded = elapsed.toFixed(2);
+  let message = "";
 
   if (i === differentIndex) {
-    let message;
     if (elapsed < 2) {
       message = `⚡ Incredible! ${rounded}s`;
     } else if (elapsed < 5) {
@@ -128,17 +126,17 @@ function patternMatchGame() {
       message = `🙂 You got it in ${rounded}s — try faster tomorrow!`;
     }
 
-    result.textContent = message;
     const narration = getCompanionNarration("pattern", true);
+    result.textContent = message;
     document.getElementById("narration").textContent = narration;
-
     trackBestTime(rounded);
   } else {
-    result.textContent = "❌ Nope! That wasn’t it.";
+    message = "❌ Nope! That wasn’t it.";
     const narration = getCompanionNarration("pattern", false);
+    result.textContent = message;
     document.getElementById("narration").textContent = narration;
   }
-};
+});
 
   btn.onmouseenter = () => {
   btn.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.15)";
