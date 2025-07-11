@@ -46,7 +46,7 @@ function startGame() {
   startBtn.style.display = "none";
 
   const focusMessage = getTodayFocusMessage();
-  document.getElementById("companion-text").style.display = "none";
+  companionText.textContent = focusMessage;
 
   const day = new Date().getDate();
   if (day % 3 === 0) {
