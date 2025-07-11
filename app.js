@@ -10,6 +10,7 @@ function getDailySeed() {
 }
 
 function startGame() {
+  console.log("🚀 startGame() triggered");
   document.getElementById("game-instruction").style.display = "block";
   gameArea.innerHTML = "";
   result.textContent = "";
