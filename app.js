@@ -81,11 +81,15 @@ function patternMatchGame() {
   }
 
   // Visual feedback on desktop
-  btn.style.transition = "background 0.1s";
-  btn.style.backgroundColor = "#b2fab4";
-  setTimeout(() => {
-    btn.style.backgroundColor = "#f0f0f0";
-  }, 100);
+  // Remove highlights from any previous clicks
+document.querySelectorAll("#grid button").forEach(b => {
+  b.style.backgroundColor = "#f0f0f0";
+});
+
+// Highlight the current clicked button and keep it
+btn.style.backgroundColor = "#b2fab4";
+btn.style.border = "2px solid #4caf50";
+btn.style.fontWeight = "bold";
 
   const elapsed = (Date.now() - startTime) / 1000;
   const rounded = elapsed.toFixed(2);
