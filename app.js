@@ -96,34 +96,47 @@ function patternMatchGame() {
     btn.textContent = (i === differentIndex) ? wrongIcon : chosenIcon;
     btn.style.fontSize = "2rem";
     btn.onclick = () => {
-  // Haptic on mobile
+  // Haptic feedback for mobile
   if (navigator.vibrate) {
     navigator.vibrate(50);
   }
 
-  // Visual feedback on desktop
-  // Remove highlights from any previous clicks
-document.querySelectorAll("#grid button").forEach(b => {
-  b.style.backgroundColor = "#f0f0f0";
-});
+  // Clear previous selections
+  document.querySelectorAll("#grid button").forEach(b => {
+    b.style.backgroundColor = "#f0f0f0";
+    b.style.border = "none";
+    b.style.fontWeight = "normal";
+    b.style.boxShadow = "";
+  });
 
-// Highlight the current clicked button and keep it
-btn.style.backgroundColor = "#b2fab4";
-btn.style.border = "2px solid #4caf50";
-btn.style.fontWeight = "bold";
-btn.style.boxShadow = "0 0 10px #4caf50";
+  // Highlight the clicked button
+  btn.style.backgroundColor = "#b2fab4";
+  btn.style.border = "2px solid #4caf50";
+  btn.style.fontWeight = "bold";
+  btn.style.boxShadow = "0 0 10px #4caf50";
 
   const elapsed = (Date.now() - startTime) / 1000;
   const rounded = elapsed.toFixed(2);
 
-  result.textContent = message;
-const narration = getCompanionNarration("pattern", true);
-result.textContent = message;
-document.getElementById("narration").textContent = narration;
-trackBestTime(rounded); else {result.textContent = "❌ Nope! That wasn’t it.";
-const narration = getCompanionNarration("pattern", false);
-result.textContent = message;
-document.getElementById("narration").textContent = narration;
+  if (i === differentIndex) {
+    let message;
+    if (elapsed < 2) {
+      message = `⚡ Incredible! ${rounded}s`;
+    } else if (elapsed < 5) {
+      message = `✅ Good job! ${rounded}s`;
+    } else {
+      message = `🙂 You got it in ${rounded}s — try faster tomorrow!`;
+    }
+
+    result.textContent = message;
+    const narration = getCompanionNarration("pattern", true);
+    document.getElementById("narration").textContent = narration;
+
+    trackBestTime(rounded);
+  } else {
+    result.textContent = "❌ Nope! That wasn’t it.";
+    const narration = getCompanionNarration("pattern", false);
+    document.getElementById("narration").textContent = narration;
   }
 };
 
