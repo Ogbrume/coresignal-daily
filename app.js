@@ -40,7 +40,11 @@ function getTodayFocusMessage() {
 
 function startGame() {
   console.log("🚀 startGame() triggered");
-  document.getElementById("game-instruction").style.display = "block";
+  const gameInstruction = document.getElementById("game-instruction");
+  const dailyTip = document.getElementById("daily-tip");
+  
+  if (gameInstruction) gameInstruction.remove();
+  if (dailyTip) dailyTip.remove();
   gameArea.innerHTML = "";
   result.textContent = "";
   startBtn.style.display = "none";
