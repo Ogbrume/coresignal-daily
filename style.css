@@ -20,23 +20,34 @@ body {
 }
 
 button {
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   font-size: 1.2rem;
-  margin-top: 1.5rem;
   background: #4caf50;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 button:hover {
   background: #45a049;
+  transform: scale(1.05);
 }
 
-#result {
-  font-size: 1.2rem;
-  margin-top: 1rem;
+#grid button {
+  background: #f0f0f0;
   color: #333;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#grid button:active {
+  transform: scale(0.95);
+  background-color: #ddd;
 }
 
