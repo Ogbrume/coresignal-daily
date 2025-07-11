@@ -102,6 +102,14 @@ function patternMatchGame() {
 
     result.textContent = message;
     trackBestTime(rounded);
+    // Fade out the grid after correct selection
+  const gridContainer = document.getElementById("grid");
+  gridContainer.style.transition = "opacity 0.5s ease";
+  gridContainer.style.opacity = "0";
+
+  setTimeout(() => {
+    gridContainer.remove();
+  }, 600); // Wait a bit longer than the fade time before removing
   } else {
     result.textContent = "❌ Nope! That wasn’t it.";
   }
