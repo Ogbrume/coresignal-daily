@@ -47,6 +47,7 @@ function startGame() {
   if (dailyTip) dailyTip.remove();
   gameArea.innerHTML = "";
   result.textContent = "";
+  document.getElementById("narration").style.display = "none";
   startBtn.style.display = "none";
 
   const focusMessage = getTodayFocusMessage();
@@ -128,13 +129,17 @@ function patternMatchGame() {
 
     const narration = getCompanionNarration("pattern", true);
     result.textContent = message;
-    document.getElementById("narration").textContent = narration;
+    const narrationEl = document.getElementById("narration");
+    narrationEl.textContent = narration;
+    narrationEl.style.display = "block";
     trackBestTime(rounded);
   } else {
     message = "❌ Nope! That wasn’t it.";
     const narration = getCompanionNarration("pattern", false);
     result.textContent = message;
-    document.getElementById("narration").textContent = narration;
+    const narrationEl = document.getElementById("narration");
+    narrationEl.textContent = narration;
+    narrationEl.style.display = "block";
   }
 });
 
@@ -186,7 +191,9 @@ function checkMathAnswer(isUserCorrect) {
   if (isUserCorrect) {
     result.textContent = "✅ Well done! Your math reflexes are sharp.";
     const narration = getCompanionNarration("math", true);
-    result.textContent += `\n\n${narration}`;
+    const narrationEl = document.getElementById("narration");
+    narrationEl.textContent = narration;
+    narrationEl.style.display = "block";
   } else {
     result.textContent = "❌ Not quite! Keep practicing.";
     const narration = getCompanionNarration("math", false);
@@ -199,11 +206,15 @@ function checkAnswer(correctNumber) {
   if (parseInt(guess) === correctNumber) {
     result.textContent = "✅ Great job! You remembered it.";
     const narration = getCompanionNarration("memory", true);
-    result.textContent += `\n\n${narration}`;
+    const narrationEl = document.getElementById("narration");
+    narrationEl.textContent = narration;
+    narrationEl.style.display = "block";
   } else {
     result.textContent = `❌ Oops! It was ${correctNumber}. Try again tomorrow.`;
     const narration = getCompanionNarration("memory", false);
-    result.textContent += `\n\n${narration}`;
+    const narrationEl = document.getElementById("narration");
+    narrationEl.textContent = narration;
+    narrationEl.style.display = "block";
   }
 }
 
