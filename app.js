@@ -1,7 +1,6 @@
 const startBtn = document.getElementById("start-btn");
 const gameArea = document.getElementById("game-area");
 const result = document.getElementById("result");
-const message = document.getElementById("daily-message");
 const companionText = document.getElementById("companion-text");
 
 // Generate a consistent puzzle based on today’s date
