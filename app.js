@@ -104,7 +104,7 @@ function patternMatchGame() {
     trackBestTime(rounded);
     // Fade out the grid after correct selection
   const gridContainer = document.getElementById("grid");
-  gridContainer.style.transition = "opacity 0.5s ease";
+  gridContainer.style.transition = "opacity 1.5s ease";
   gridContainer.style.opacity = "0";
 
   setTimeout(() => {
