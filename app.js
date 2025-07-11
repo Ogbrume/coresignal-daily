@@ -140,11 +140,14 @@ function patternMatchGame() {
     trackBestTime(rounded);
   } else {
     message = "❌ Nope! That wasn’t it.";
-    const narration = getCompanionNarration("pattern", false);
-    result.textContent = message;
-    const narrationEl = document.getElementById("narration");
-    narrationEl.textContent = narration;
-    narrationEl.style.display = "block";
+result.textContent = message;
+
+const narration = getCompanionNarration("pattern", "fail");
+const narrationEl = document.getElementById("narration");
+narrationEl.textContent = narration;
+narrationEl.style.display = "block";
+
+showCompanionDialogue("fail");
   }
 });
 
@@ -202,7 +205,11 @@ function checkMathAnswer(isUserCorrect) {
   } else {
     result.textContent = "❌ Not quite! Keep practicing.";
     const narration = getCompanionNarration("math", "fail");
-    result.textContent += `\n\n${narration}`;
+    const narrationEl = document.getElementById("narration");
+    narrationEl.textContent = narration;
+    narrationEl.style.display = "block";
+    
+    showCompanionDialogue("fail");
   }
 }
 
@@ -220,6 +227,8 @@ function checkAnswer(correctNumber) {
     const narrationEl = document.getElementById("narration");
     narrationEl.textContent = narration;
     narrationEl.style.display = "block";
+
+showCompanionDialogue("fail");
   }
 }
 
