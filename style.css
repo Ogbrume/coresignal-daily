@@ -58,13 +58,19 @@ button:hover {
 }
 
 .focus-card {
-  background: #fff9f1;
-  border-left: 6px solid #ffcc80;
+  background: #f5f7ff;
+  border-left: 5px solid #4a90e2;
   padding: 1rem;
   margin-bottom: 1.5rem;
-  border-radius: 12px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+}
+
+#companion-text {
   font-size: 1.1rem;
-  color: #444;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
 }
 
 .instruction-text {
