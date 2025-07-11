@@ -115,3 +115,15 @@ button:hover {
   border-left: 4px solid #ffcb05;
   border-radius: 0.5rem;
 }
+
+#narration {
+  display: none;
+  white-space: pre-line;
+  margin-top: 1rem;
+  font-style: italic;
+  color: #444;
+  background: #f8f8f8;
+  border-left: 4px solid #ccc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
