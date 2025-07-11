@@ -112,6 +112,31 @@ function trackBestTime(currentTime) {
   }
 }
 
+function quickMathGame() {
+  const a = Math.floor(Math.random() * 10);
+  const b = Math.floor(Math.random() * 10);
+  const correctSum = a + b;
+  const isCorrect = Math.random() > 0.5;
+  const shownSum = isCorrect ? correctSum : correctSum + (Math.random() > 0.5 ? 1 : -1);
+
+  gameArea.innerHTML = `
+    <p>Is this math correct?</p>
+    <h2>${a} + ${b} = ${shownSum}</h2>
+    <div style="margin-top: 1rem;">
+      <button onclick="checkMathAnswer(${isCorrect})">✅</button>
+      <button onclick="checkMathAnswer(${!isCorrect})">❌</button>
+    </div>
+  `;
+}
+
+function checkMathAnswer(isUserCorrect) {
+  if (isUserCorrect) {
+    result.textContent = "✅ Well done! Your math reflexes are sharp.";
+  } else {
+    result.textContent = "❌ Not quite! Keep practicing.";
+  }
+}
+
 function checkAnswer(correctNumber) {
   const guess = document.getElementById("guess").value;
   if (parseInt(guess) === correctNumber) {
