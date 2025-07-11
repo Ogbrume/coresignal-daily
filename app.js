@@ -47,21 +47,50 @@ function patternMatchGame() {
   const differentIndex = Math.floor(Math.random() * gridSize);
 
   gameArea.innerHTML = `<p>Find the one that’s different 👀</p><div id="grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; justify-items:center;"></div>`;
-
   const grid = document.getElementById("grid");
+
+  const startTime = Date.now();
 
   for (let i = 0; i < gridSize; i++) {
     const btn = document.createElement("button");
     btn.textContent = (i === differentIndex) ? wrongIcon : chosenIcon;
     btn.style.fontSize = "2rem";
     btn.onclick = () => {
+      const elapsed = (Date.now() - startTime) / 1000;
+      const rounded = elapsed.toFixed(2);
+
       if (i === differentIndex) {
-        result.textContent = "✅ Correct! You found the odd one.";
+        let message;
+        if (elapsed < 2) {
+          message = `⚡ Incredible! ${rounded}s`;
+        } else if (elapsed < 5) {
+          message = `✅ Good job! ${rounded}s`;
+        } else {
+          message = `🙂 You got it in ${rounded}s — try faster tomorrow!`;
+        }
+
+        result.textContent = message;
+        trackBestTime(rounded);
       } else {
-        result.textContent = "❌ Nope! Try again tomorrow.";
+        result.textContent = "❌ Nope! That wasn’t it.";
       }
     };
     grid.appendChild(btn);
+  }
+}
+
+function trackBestTime(currentTime) {
+  const today = new Date().toDateString();
+  const bestKey = `patternBest-${today}`;
+
+  const current = parseFloat(currentTime);
+  const stored = localStorage.getItem(bestKey);
+
+  if (!stored || current < parseFloat(stored)) {
+    localStorage.setItem(bestKey, current);
+    result.textContent += `\n🏆 New personal best!`;
+  } else {
+    result.textContent += `\nYour best today: ${stored}s`;
   }
 }
 
