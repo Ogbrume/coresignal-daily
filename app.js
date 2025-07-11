@@ -163,9 +163,12 @@ window.onload = () => {
   document.getElementById("today-date").textContent = new Date().toDateString();
   document.getElementById("companion-text").textContent = getTodayFocusMessage();
 
-  startBtn.addEventListener("click", () => {
-    document.getElementById("game-instruction").style.display = "none";
-    startGame();
-  });
+  startBtn.classList.add("pulse");
+
+startBtn.addEventListener("click", () => {
+  startBtn.classList.remove("pulse");
+  document.getElementById("game-instruction").style.display = "none";
+  startGame();
+});
 };
 
