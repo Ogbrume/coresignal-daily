@@ -116,20 +116,12 @@ btn.style.boxShadow = "0 0 10px #4caf50";
   const elapsed = (Date.now() - startTime) / 1000;
   const rounded = elapsed.toFixed(2);
 
-  if (i === differentIndex) {
-    let message;
-    if (elapsed < 2) {
-      message = `⚡ Incredible! ${rounded}s`;
-    } else if (elapsed < 5) {
-      message = `✅ Good job! ${rounded}s`;
-    } else {
-      message = `🙂 You got it in ${rounded}s — try faster tomorrow!`;
-    }
-
-    result.textContent = message;
-    trackBestTime(rounded);
-  } else {
-    result.textContent = "❌ Nope! That wasn’t it.";
+  result.textContent = message;
+const narration = getCompanionNarration("pattern", true);
+result.textContent += `\n\n${narration}`;
+trackBestTime(rounded); else {result.textContent = "❌ Nope! That wasn’t it.";
+const narration = getCompanionNarration("pattern", false);
+result.textContent += `\n\n${narration}`;
   }
 };
 
@@ -180,8 +172,12 @@ function quickMathGame() {
 function checkMathAnswer(isUserCorrect) {
   if (isUserCorrect) {
     result.textContent = "✅ Well done! Your math reflexes are sharp.";
+    const narration = getCompanionNarration("math", true);
+    result.textContent += `\n\n${narration}`;
   } else {
     result.textContent = "❌ Not quite! Keep practicing.";
+    const narration = getCompanionNarration("math", false);
+    result.textContent += `\n\n${narration}`;
   }
 }
 
@@ -189,9 +185,60 @@ function checkAnswer(correctNumber) {
   const guess = document.getElementById("guess").value;
   if (parseInt(guess) === correctNumber) {
     result.textContent = "✅ Great job! You remembered it.";
+    const narration = getCompanionNarration("memory", true);
+    result.textContent += `\n\n${narration}`;
   } else {
     result.textContent = `❌ Oops! It was ${correctNumber}. Try again tomorrow.`;
+    const narration = getCompanionNarration("memory", false);
+    result.textContent += `\n\n${narration}`;
   }
+}
+
+function getCompanionNarration(gameType, success) {
+  const patternTips = success
+    ? [
+        "🧠 Your reaction time is on point! Keep scanning the world around you today.",
+        "👁️‍🗨️ Great spotting! That kind of visual sharpness helps in real life, too.",
+        "✨ Nailed it! Spotting patterns is how the brain filters chaos.",
+      ]
+    : [
+        "🔍 Not quite — but that’s okay. The brain learns fastest from misses.",
+        "🌀 Almost there. Try focusing on *groups* of icons next time.",
+        "💡 Mistakes are proof you’re trying. Let’s get it tomorrow.",
+      ];
+
+  const memoryTips = success
+    ? [
+        "🧠 That’s some sharp memory! Want a challenge? Try recalling your last grocery list later.",
+        "📦 Great recall — today’s rep just made your memory stronger.",
+        "💭 You remembered it! These drills help in daily tasks too.",
+      ]
+    : [
+        "🔁 No worries — memory flex takes time. Come back stronger tomorrow.",
+        "🗂️ Almost had it. Memory lapses are natural, and improvable.",
+        "🌱 Missed it today? That’s still a rep for your recall muscle.",
+      ];
+
+  const mathTips = success
+    ? [
+        "🔢 Math reflexes like that help you tip, split bills, and more. You're sharp.",
+        "🚀 Quick logic! Mental agility grows with every try.",
+        "💡 Nicely done — even small math wins add up to strong habits.",
+      ]
+    : [
+        "🤔 A small miss — no biggie. Your brain still worked through it.",
+        "🧮 Try again tomorrow — the right answer often sticks better after a wrong one.",
+        "⚙️ Mental gears are turning — and that’s what counts.",
+      ];
+
+  const bank = {
+    pattern: patternTips,
+    memory: memoryTips,
+    math: mathTips,
+  };
+
+  const messages = bank[gameType];
+  return messages[Math.floor(Math.random() * messages.length)];
 }
 
 window.onload = () => {
