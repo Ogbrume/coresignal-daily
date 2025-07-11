@@ -11,6 +11,7 @@ function getDailySeed() {
 }
 
 function startGame() {
+  document.getElementById("game-instruction").style.display = "block";
   gameArea.innerHTML = "";
   result.textContent = "";
   startBtn.style.display = "none";
@@ -122,8 +123,9 @@ function checkAnswer(correctNumber) {
 }
 
 startBtn.addEventListener("click", () => {
+  document.getElementById("game-instruction").style.display = "none";
   startGame();
 });
 
-message.textContent = `Welcome! This is your challenge for ${new Date().toDateString()}.`;
+document.getElementById("today-date").textContent = new Date().toDateString();
 
