@@ -12,13 +12,15 @@ function getDailySeed() {
 function startGame() {
   gameArea.innerHTML = "";
   result.textContent = "";
+  startBtn.style.display = "none"; // Hide the button when the game starts
 
-  // Alternate between games based on the day
-  const seed = new Date().getDate();
-  if (seed % 2 === 0) {
-    memoryNumberGame(); // existing game
+  const day = new Date().getDate();
+  if (day % 3 === 0) {
+    quickMathGame();
+  } else if (day % 2 === 0) {
+    memoryNumberGame();
   } else {
-    patternMatchGame(); // new game
+    patternMatchGame();
   }
 }
 
