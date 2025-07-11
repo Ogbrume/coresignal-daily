@@ -132,6 +132,15 @@ btn.style.boxShadow = "0 0 10px #4caf50";
     result.textContent = "❌ Nope! That wasn’t it.";
   }
 };
+
+  btn.onmouseenter = () => {
+  btn.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.15)";
+};
+btn.onmouseleave = () => {
+  if (btn.style.backgroundColor !== "rgb(178, 250, 180)") {
+    btn.style.boxShadow = "";
+  }
+};
     grid.appendChild(btn);
   }
 }
